@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteBinObj", "DeleteBinObj\DeleteBinObj.csproj", "{26CADBE1-C78F-4948-92BD-1865BE57C23E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteBinObj", "DeleteBinObj\DeleteBinObj.csproj", "{E0638BBD-FFA5-4517-8A57-2A25A0146E55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26CADBE1-C78F-4948-92BD-1865BE57C23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26CADBE1-C78F-4948-92BD-1865BE57C23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26CADBE1-C78F-4948-92BD-1865BE57C23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26CADBE1-C78F-4948-92BD-1865BE57C23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0638BBD-FFA5-4517-8A57-2A25A0146E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0638BBD-FFA5-4517-8A57-2A25A0146E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0638BBD-FFA5-4517-8A57-2A25A0146E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0638BBD-FFA5-4517-8A57-2A25A0146E55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {36458BEA-F07C-4650-AA6C-1F6E70031B4C}
+		SolutionGuid = {8FC8E634-5E40-4E4F-B162-37B96A1752B1}
 	EndGlobalSection
 EndGlobal

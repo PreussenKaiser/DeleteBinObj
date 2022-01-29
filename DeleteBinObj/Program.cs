@@ -1,59 +1,42 @@
-﻿using System;
+﻿using DeleteBinObj;
 
-namespace DeleteBinObj
+Console.Title = "DeleteBinObj";
+ConsoleHelper.ShowHelp();
+bool exit = false;
+
+while (!exit)
 {
-    /// <summary>
-    /// The console application itself.
-    /// </summary>
-    internal class Program
+    Console.Write("> ");
+    string? command = Console.ReadLine()?.ToLower();
+
+    switch (command)
     {
-        /// <summary>
-        /// Controls the arguments passed into the console.
-        /// </summary>
-        /// <param name="args">Arguments passed in.</param>
-        private static void Main(string[] args)
-        {
-            Console.Title = "DeleteBinObj";
+        case "help":
             ConsoleHelper.ShowHelp();
 
-            bool exit = false;
+            break;
 
-            while (!exit)
+        case "exit":
+            exit = true;
+
+            break;
+
+        case "delete":
+            try
             {
-                Console.Write("> ");
-                string command = Console.ReadLine().ToLower();
-
-                switch (command)
-                {
-                    case "help":
-                        ConsoleHelper.ShowHelp();
-
-                        break;
-
-                    case "exit":
-                        exit = true;
-
-                        break;
-
-                    case "delete":
-                        try
-                        {
-                            ConsoleHelper.DeleteDirectory("bin");
-                            ConsoleHelper.DeleteDirectory("obj");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-
-                        break;
-
-                    default:
-                        Console.WriteLine($"{command} is an invalid command, enter HELP for a list of commands.");
-
-                        break;
-                }
+                ConsoleHelper.DeleteDirectory("bin");
+                ConsoleHelper.DeleteDirectory("obj");
             }
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            break;
+
+        default:
+            Console.WriteLine($"{command} is an invalid command, enter HELP for a list of commands.");
+
+            break;
     }
 }

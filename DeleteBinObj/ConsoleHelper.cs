@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace DeleteBinObj
+﻿namespace DeleteBinObj
 {
     /// <summary>
     /// The class used to handle commands.
@@ -17,7 +13,7 @@ namespace DeleteBinObj
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             string[] projectDirectories = Directory.GetDirectories(currentDirectory);
-            List<string> deletedDirectories = new List<string>();
+            List<string> deletedDirectories = new();
 
             // Loops through current directory, then loops through all found directories.
             foreach (string directoryName in projectDirectories)
