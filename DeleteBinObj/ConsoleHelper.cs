@@ -8,42 +8,22 @@
         /// <summary>
         /// Deletes a directory.
         /// </summary>
-        /// <param name="directory">The directory to delete.</param>
-        public static void DeleteDirectory(string directory)
+        /// <param name="dirToDel">The directory to delete.</param>
+        /// <param name="curDir">The current directory to search in.</param>
+        public static void DeleteDirectory(string dirToDel, string curDir)
         {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string[] projectDirectories = Directory.GetDirectories(currentDirectory);
-            List<string> deletedDirectories = new();
-
-            // Loops through current directory, then loops through all found directories.
-            foreach (string directoryName in projectDirectories)
+            foreach (string d in Directory.GetDirectories(curDir))
             {
-                projectDirectories = Directory.GetDirectories(directoryName);
+                string pathToDel = $"{curDir}\\{dirToDel}";
 
-                foreach (string deletedDirectoryName in projectDirectories)
+                if (d == pathToDel)
                 {
-                    projectDirectories = deletedDirectoryName.Split('\\');
-
-                    if (projectDirectories[projectDirectories.Length - 1] == directory)
-                    {
-                        Directory.Delete(deletedDirectoryName, true);
-                        deletedDirectories.Add(deletedDirectoryName);
-                    }
+                    Directory.Delete(pathToDel, true);
                 }
-            }
-
-            // Lists all deleted directories.
-            if (deletedDirectories.Count > 0)
-            {
-                Console.WriteLine($"{directory} directories deleted:");
-                for (int i = 0; i < deletedDirectories.Count; i++)
+                else
                 {
-                    Console.WriteLine(deletedDirectories[i]);
+                    DeleteDirectory(dirToDel, d);
                 }
-            }
-            else
-            {
-                Console.WriteLine($"No directories called {directory} were found.");
             }
         }
 

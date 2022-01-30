@@ -2,5 +2,6 @@
 Deletes the bin and obj folders in a VS solution.
 
 ## Instructions
-Build the solution, go into bin/Debug/net6.0, copy and paste the exe into a solution folder.
+### Windows
+Get the executable from the Versions folder and place it next to your solution.
 Start the program, enter the appropriate command and your titanic binaries should be gone!

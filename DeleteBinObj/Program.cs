@@ -8,6 +8,7 @@ while (!exit)
 {
     Console.Write("> ");
     string? command = Console.ReadLine()?.ToLower();
+    string currentDirectory = Directory.GetCurrentDirectory();
 
     switch (command)
     {
@@ -24,8 +25,8 @@ while (!exit)
         case "delete":
             try
             {
-                ConsoleHelper.DeleteDirectory("bin");
-                ConsoleHelper.DeleteDirectory("obj");
+                ConsoleHelper.DeleteDirectory("bin", currentDirectory);
+                ConsoleHelper.DeleteDirectory("obj", currentDirectory);
             }
             catch (Exception ex)
             {
