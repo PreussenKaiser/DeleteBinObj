@@ -23,6 +23,9 @@
         /// <param name="action">The action to use.</param>
         public static void ActOnDirectories(string dirToAct, string curDir, Action<string> action)
         {
+            if (Directory.GetFiles(Directory.GetCurrentDirectory(), "*.sln").Length == 0)
+                throw new FileLoadException("Not in a VS solution!");
+
             foreach (string dir in Directory.GetDirectories(curDir))
             {
                 string pathToRead = $"{curDir}\\{dirToAct}";

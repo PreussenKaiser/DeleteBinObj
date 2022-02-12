@@ -31,49 +31,35 @@ while (!exit)
             break;
 
         case "delete":
-            if (Directory.GetFiles(currentDirectory, "*.sln").Length != 0)
+            try
             {
-                try
+                Action<string> action = (path) =>
                 {
-                    Action<string> action = (path) =>
-                    {
-                        Directory.Delete(path, true);
-                        Console.WriteLine($"Deleted {path}");
-                    };
+                    Directory.Delete(path, true);
+                    Console.WriteLine($"Deleted {path}");
+                };
 
-                    ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
-                    ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
+                ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Not in a VS project root!");
+                Console.WriteLine(ex.Message);
             }
 
             break;
 
         case "read":
-            if (Directory.GetFiles(currentDirectory, "*.sln").Length != 0)
+            try
             {
-                try
-                {
-                    Action<string> action = (path) => Console.WriteLine($"Found {path}");
+                Action<string> action = (path) => Console.WriteLine($"Found {path}");
 
-                    ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
-                    ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
+                ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Not in a VS project root!");
+                Console.WriteLine(ex.Message);
             }
 
             break;
