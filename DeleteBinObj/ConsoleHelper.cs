@@ -26,13 +26,11 @@
             if (Directory.GetFiles(Directory.GetCurrentDirectory(), "*.sln").Length == 0)
                 throw new FileLoadException("Not in a VS solution!");
 
-            foreach (string dir in Directory.GetDirectories(curDir))
+            foreach (string dir in Directory.GetDirectories(Path.GetFullPath(curDir)))
             {
-                string pathToRead = $"{curDir}\\{dirToAct}";
-
-                if (dir == pathToRead)
+                if (dir == Path.Combine(curDir, dirToAct))
                 {
-                    action(pathToRead);
+                    action(dir);
                 }
                 else
                 {
