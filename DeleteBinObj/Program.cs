@@ -8,12 +8,20 @@ while (!exit)
 {
     Console.Write("> ");
     string? command = Console.ReadLine()?.ToLower();
+    string[]? commands = command?.Split();
     string currentDirectory = Directory.GetCurrentDirectory();
 
-    switch (command)
+    switch (commands?[0])
     {
         case "help":
-            ConsoleHelper.ShowHelp();
+            if (commands.Length == 1)
+            {
+                ConsoleHelper.ShowHelp();
+            }
+            else
+            {
+                ConsoleHelper.ShowHelp(commands[1]);
+            }
 
             break;
 
@@ -25,8 +33,29 @@ while (!exit)
         case "delete":
             try
             {
-                ConsoleHelper.DeleteDirectory("bin", currentDirectory);
-                ConsoleHelper.DeleteDirectory("obj", currentDirectory);
+                Action<string> action = (path) =>
+                {
+                    Directory.Delete(path, true);
+                    Console.WriteLine($"Deleted {path}");
+                };
+
+                ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
+                ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            break;
+
+        case "read":
+            try
+            {
+                Action<string> action = (path) => Console.WriteLine($"Found {path}");
+
+                ConsoleHelper.ActOnDirectories("bin", currentDirectory, action);
+                ConsoleHelper.ActOnDirectories("obj", currentDirectory, action);
             }
             catch (Exception ex)
             {

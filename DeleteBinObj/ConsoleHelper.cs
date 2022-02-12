@@ -6,23 +6,34 @@
     internal static class ConsoleHelper
     {
         /// <summary>
-        /// Deletes a directory.
+        /// Contains a dictionary of console arguments.
         /// </summary>
-        /// <param name="dirToDel">The directory to delete.</param>
-        /// <param name="curDir">The current directory to search in.</param>
-        public static void DeleteDirectory(string dirToDel, string curDir)
+        private static readonly Dictionary<string, string> arguments = new()
         {
-            foreach (string d in Directory.GetDirectories(curDir))
-            {
-                string pathToDel = $"{curDir}\\{dirToDel}";
+            { "exit", "Exits the application." },
+            { "delete", "Deletes bin and obj directories" },
+            { "read", "Reads every available bin and obj directory." },
+        };
 
-                if (d == pathToDel)
+        /// <summary>
+        /// Acts on specified directories with the provided action.
+        /// </summary>
+        /// <param name="dirToAct">The directory to act upon.</param>
+        /// <param name="curDir">The current directory in recursion.</param>
+        /// <param name="action">The action to use.</param>
+        public static void ActOnDirectories(string dirToAct, string curDir, Action<string> action)
+        {
+            foreach (string dir in Directory.GetDirectories(curDir))
+            {
+                string pathToRead = $"{curDir}\\{dirToAct}";
+
+                if (dir == pathToRead)
                 {
-                    Directory.Delete(pathToDel, true);
+                    action(pathToRead);
                 }
                 else
                 {
-                    DeleteDirectory(dirToDel, d);
+                    ActOnDirectories(dirToAct, dir, action);
                 }
             }
         }
@@ -30,11 +41,26 @@
         /// <summary>
         /// Lists available commands.
         /// </summary>
-        public static void ShowHelp()
+        public static void ShowHelp(string command = "")
         {
-            Console.WriteLine("HELP: Returns a list of commands.");
-            Console.WriteLine("EXIT: Exits the application.");
-            Console.WriteLine("DELETE: Deletes bin and obj directories.");
+            if (string.IsNullOrEmpty(command))
+            {
+                Console.WriteLine("HELP: Returns a list of commands.");
+                Console.WriteLine("EXIT: Exits the application.");
+                Console.WriteLine("DELETE: Deletes bin and obj directories.");
+                Console.WriteLine("READ: Reads every available bin and obj directory");
+            }
+            else
+            {
+                if (arguments.ContainsKey(command))
+                {
+                    Console.WriteLine(arguments[command]);
+                }
+                else
+                {
+                    Console.WriteLine($"{command} is not a valid command.");
+                }
+            }
         }
     }
 }
