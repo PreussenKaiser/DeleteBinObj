@@ -1,10 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	<Title>DeleteBinObj</Title>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackAsTool>true</PackAsTool>
+	<ToolCommandName>deletebinobj</ToolCommandName>
+	<PackageOutputPath>.nupkg</PackageOutputPath>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Description>Deletes the bin and obj folders in a VS solution.</Description>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/PreussenKaiser/DeleteBinObj</RepositoryUrl>
+	<PackageTags>cli, cli-tool</PackageTags>
+	<NeutralLanguage>en</NeutralLanguage>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
